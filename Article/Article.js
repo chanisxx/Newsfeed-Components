@@ -101,13 +101,86 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as its one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as its one argument, or 5 separate arguments mapping to each piece of the data object above.*/
 
-  Step 2: Add an event listener to the expandButton span. This listener should toggle the class 'article-open' on the 'article' div.
+  const articleMaker = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+    const article = document.createElement('div');
+    const titles = document.createElement('h2');
+    const dates =  document.createElement('p');
+    const par1 = document.createElement('p');
+    const par2 = document.createElement('p');
+    const par3 = document.createElement('p');
+    const btn = document.createElement('span');
+    
+    article.appendChild(titles);
+    article.appendChild(dates);
+    article.appendChild(par1);
+    article.appendChild(par2);
+    article.appendChild(par3);
+    article.appendChild(btn);
+
+    article.classList.add('article');
+    dates.classList.add('date');
+    btn.classList.add('expandButton')
+
+    titles.textContent = title;
+    dates.textContent = date;
+    par1.textContent = firstParagraph;
+    par2.textContent = secondParagraph;
+    par3.textContent = thirdParagraph;
+    btn.textContent = 'v';
+
+    btn.addEventListener('click', () => {
+      if (article.classList.toggle('article-open')){
+        article.style.overflow = 'scroll';
+        btn.textContent = '^'
+      }
+    });
+
+    btn.style.border = '1px dotted black';
+    btn.style.backgroundColor = '#388E3C';
+    btn.style.borderRadius = '5px';
+    btn.style.color = 'white';
+    btn.style.padding = '3px 12px';
+    btn.style.margin = '5px';
+    btn.style.boxShadow = '2px 2px 5px lightgrey'
+
+    return article;
+
+  }
+
+  const art = document.querySelector('.articles');
+
+  /*Step 2: Add an event listener to the expandButton span. This listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: Don't forget to return something from your function!
 
-  Step 4: Outside your function, loop over the data. At each iteration you'll use your component to create an article and append it to the DOM inside the 'articles' div.
+  Step 4: Outside your function, loop over the data. At each iteration you'll use your component to create an article and append it to the DOM inside the 'articles' div.*/
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  
+  /*Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+const object = 
+  {title: 'Hogwarts win the Triwizard Tournament!', 
+  date: 'May 13th, 2020', 
+  firstParagraph: 'Thestral dirigible plums, Viktor Krum hexed memory charm Animagus Invisibility Cloak three-headed Dog. Half-Blood Prince Invisibility Cloak cauldron cakes, hiya Harry! Basilisk venom Umbridge swiveling blue eye Levicorpus, nitwit blubber oddment tweak. Chasers Winky quills The Boy Who Lived bat spleens cupboard under the stairs flying motorcycle. Sirius Black Holyhead Harpies, you’ve got dirt on your nose. Floating candles Sir Cadogan The Sight three hoops disciplinary hearing. Grindlewald pig’s tail Sorcerer\'s Stone biting teacup. Side-along dragon-scale suits Filch 20 points, Mr. Potter.',
+  secondParagraph: 'Boggarts lavender robes, Hermione Granger Fantastic Beasts and Where to Find Them. Bee in your bonnet Hand of Glory elder wand, spectacles House Cup Bertie Bott’s Every Flavor Beans Impedimenta. Stunning spells tap-dancing spider Slytherin’s Heir mewing kittens Remus Lupin. Palominos scarlet train black robes, Metamorphimagus Niffler dead easy second bedroom. Padma and Parvati Sorting Hat Minister of Magic blue turban remember my last.',
+  thirdParagraph: 'Red hair crookshanks bludger Marauder’s Map Prongs sunshine daisies butter mellow Ludo Bagman. Beaters gobbledegook N.E.W.T., Honeydukes eriseD inferi Wormtail. Mistletoe dungeons Parseltongue Eeylops Owl Emporium expecto patronum floo powder duel. Gillyweed portkey, keeper Godric’s Hollow telescope, splinched fire-whisky silver Leprechaun O.W.L. stroke the spine. Chalice Hungarian Horntail, catherine wheels Essence of Dittany Gringotts Harry Potter. Prophecies Yaxley green eyes Remembrall horcrux hand of the servant. Devil’s snare love potion Ravenclaw, Professor Sinistra time-turner steak and kidney pie. Cabbage Daily Prophet letters from no one Dervish and Banges leg.'
+};
+
+const object2 = {
+  title: 'Humanity, Space, and Discoveries',
+  date: 'April 4th, 2020',
+  firstParagraph: 'For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.',
+  secondParagraph: 'We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win.',
+  thirdParagraph: 'There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning. ...As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore . . . and this is exploration at its greatest.',
+}
+
+data.push(object2);
+data.push(object);
+
+data.forEach(item => {
+  art.appendChild(articleMaker(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+})
+
